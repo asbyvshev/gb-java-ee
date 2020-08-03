@@ -1,0 +1,8 @@
+Listening for transport dt_socket at address: 8787
+13:39:04,961 INFO  [org.jboss.as.repository] (management-handler-thread - 1) WFLYDR0001: Content added at location /Users/admin/Downloads/wildfly-20.0.1.Final/standalone/data/content/3a/0ba882f3ed622cd63662e24f612c5c768a2be7/content
+13:39:04,987 INFO  [org.wildfly.extension.undertow] (ServerService Thread Pool -- 79) WFLYUT0022: Unregistered web context: '/first-web-app' from server 'default-server'
+13:39:05,023 INFO  [org.jboss.as.server.deployment] (MSC service thread 1-1) WFLYSRV0028: Stopped deployment first-web-app.war (runtime-name: first-web-app.war) in 46ms
+13:39:05,029 INFO  [org.jboss.as.server.deployment] (MSC service thread 1-4) WFLYSRV0027: Starting deployment of "first-web-app.war" (runtime-name: "first-web-app.war")
+13:39:05,283 INFO  [org.wildfly.extension.undertow] (ServerService Thread Pool -- 84) WFLYUT0021: Registered web context: '/first-web-app' for server 'default-server'
+13:39:05,373 INFO  [org.jboss.as.server] (management-handler-thread - 1) WFLYSRV0016: Replaced deployment "first-web-app.war" with deployment "first-web-app.war"
+13:39:05,376 INFO  [org.jboss.as.repository] (management-handler-thread - 1) WFLYDR0002: Content removed from location /Users/admin/Downloads/wildfly-20.0.1.Final/standalone/data/content/be/67bfb9564871bd7cd1bdd22ccd87aee1df7e7f/content

@@ -4,7 +4,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
-//@WebFilter(urlPatterns = "/*")
+//@WebFilter(urlPatterns = "/*", dispatcherTypes = {DispatcherType.REQUEST,DispatcherType.INCLUDE})
 public class HeaderFilter implements Filter {
 
     private transient FilterConfig filterConfig;
@@ -16,8 +16,10 @@ public class HeaderFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        filterConfig.getServletContext().getRequestDispatcher("servlets/MainPageServlet").include(servletRequest,servletResponse);
-        filterChain.doFilter(servletRequest,servletResponse);
+        servletResponse.setCharacterEncoding("utf-8");
+        servletResponse.setContentType("text/html");
+
+        filterChain.doFilter(servletRequest, servletResponse);
     }
 
     @Override

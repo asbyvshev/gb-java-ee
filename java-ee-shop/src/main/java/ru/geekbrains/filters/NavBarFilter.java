@@ -16,7 +16,10 @@ public class NavBarFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        filterConfig.getServletContext().getRequestDispatcher("/index.jsp").include(servletRequest,servletResponse);
+        servletResponse.setCharacterEncoding("utf-8");
+        servletResponse.setContentType("text/html");
+
+        filterConfig.getServletContext().getRequestDispatcher("/nav").include(servletRequest,servletResponse);
         filterChain.doFilter(servletRequest,servletResponse);
     }
 

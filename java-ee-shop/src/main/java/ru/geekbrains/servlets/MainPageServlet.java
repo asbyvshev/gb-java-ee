@@ -12,5 +12,6 @@ public class MainPageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.getWriter().println("Some implementation main page!");
+        resp.getWriter().println("<h1>Какая-то реализация!</h1>");
     }
 }

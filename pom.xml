@@ -12,6 +12,7 @@
 
     <modules>
         <module>first-web-app</module>
+        <module>java-ee-shop</module>
     </modules>
 
 </project>

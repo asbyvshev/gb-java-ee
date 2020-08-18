@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name="CartControllerServlet",urlPatterns = {"/cart","/cart/*"})
+@WebServlet(name="CartControllerServlet",urlPatterns = {"/cart/*"})
 public class CartControllerServlet extends HttpServlet {
 
     private static final Logger logger = LoggerFactory.getLogger(ProductControllerServlet.class);
@@ -22,10 +22,10 @@ public class CartControllerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         logger.info("Index cart page");
 
-//        String path = req.getServletPath();
-//        if (path.startsWith("/cart")) {
-//            path = path.replace("cart", "");
-//        }
+        String path = req.getServletPath();
+        if (path.startsWith("/cart")) {
+            path = path.replace("cart", "");
+        }
 
         req.setAttribute("activePage", "cart");
 

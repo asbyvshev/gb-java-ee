@@ -14,13 +14,22 @@
 
 <div class="container">
     <div class="row py-2">
-            <c:forEach var="brand" items="${requestScope.catalog}">
-                <tr>
-                    <td>
-                        <c:out value="${brand.name}"/>
-                    </td>
-                </tr>
-            </c:forEach>
+            <table class="table table-bordered my-2">
+                  <thead>
+                  <tr>
+                      <th scope="col">Name</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                      <c:forEach var="brand" items="${requestScope.catalog}">
+                          <tr>
+                              <td>
+                                  <c:out value="${prod.name}"/>
+                              </td>
+                          </tr>
+                      </c:forEach>
+                  </tbody>
+            </table>
     </div>
 </div>
 

@@ -1,4 +1,4 @@
-package ru.geekbrains.servlets;
+package ru.geekbrains.servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -7,11 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "MainPageServlet",urlPatterns = "/main")
-public class MainPageServlet extends HttpServlet {
+@WebServlet(name = "CatalogServlet",urlPatterns = "/catalog")
+public class CatalogControllerServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        resp.getWriter().println("Some implementation main page!");
-        resp.getWriter().println("<h1>Какая-то реализация!</h1>");
+        req.setAttribute("activePage", "catalog");
+        getServletContext().getRequestDispatcher("/WEB-INF/catalog.jsp").forward(req, resp);
     }
 }

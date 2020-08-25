@@ -1,13 +1,13 @@
-package ru.geekbrains.filters;
+package ru.geekbrains.filter;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import java.io.IOException;
 
 @WebFilter(urlPatterns = "/*")
-public class NavBarFilter implements Filter {
+public class EncodingFilter implements Filter {
 
-    private FilterConfig filterConfig;
+    private transient FilterConfig filterConfig;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -16,11 +16,10 @@ public class NavBarFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
+//      Задаем кодировку для всех ответов на запросы
         servletResponse.setCharacterEncoding("utf-8");
-        servletResponse.setContentType("text/html");
-
-        filterConfig.getServletContext().getRequestDispatcher("/nav").include(servletRequest,servletResponse);
-        filterChain.doFilter(servletRequest,servletResponse);
+//        Передаем зачеия дальше сервлетам\фильтрам
+        filterChain.doFilter(servletRequest, servletResponse);
     }
 
     @Override

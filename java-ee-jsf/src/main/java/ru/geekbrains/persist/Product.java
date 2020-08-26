@@ -1,5 +1,7 @@
 package ru.geekbrains.persist;
 
+//import javax.validation.constrains;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 
@@ -7,8 +9,11 @@ public class Product implements Serializable {
 
     private Long id;
 
+//    @NotNull(message = "Поле не должно быть пустым")
     private String name;
 
+//    @NotNull(message = "Поле не должно быть пустым")
+//    @Size(min = 4, max = 10,message = "Поле должно содержать от 4 до 10 символов")
     private String description;
 
     private BigDecimal price;

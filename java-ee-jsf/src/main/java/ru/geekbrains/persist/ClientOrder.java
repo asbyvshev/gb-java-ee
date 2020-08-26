@@ -17,6 +17,10 @@ public class ClientOrder {
         this.status = status;
     }
 
+    public ClientOrder(List<Product> products) {
+        this.products = products;
+    }
+
     public Long getId() {
         return id;
     }

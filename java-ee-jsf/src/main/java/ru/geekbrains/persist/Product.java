@@ -2,11 +2,16 @@ package ru.geekbrains.persist;
 
 //import javax.validation.constrains;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+@Entity
+@Table(name = "products")
 public class Product implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
 //    @NotNull(message = "Поле не должно быть пустым")

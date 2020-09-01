@@ -1,10 +1,16 @@
 package ru.geekbrains.persist;
 
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClientOrder {
+@Entity
+@Table(name = "client_orders")
+public class ClientOrder implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private List<Product> products;
     private byte status;

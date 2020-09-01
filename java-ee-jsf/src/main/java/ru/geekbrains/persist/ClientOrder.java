@@ -12,7 +12,11 @@ public class ClientOrder implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Transient
     private List<Product> products;
+
+    @Column
     private byte status;
 
     public ClientOrder(){}

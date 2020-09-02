@@ -21,8 +21,7 @@ public class ClientOrder implements Serializable {
 
     public ClientOrder(){}
 
-    public ClientOrder(Long id, List<Product> products, byte status) {
-        this.id = id;
+    public ClientOrder(List<Product> products, byte status) {
         this.products = products;
         this.status = status;
     }

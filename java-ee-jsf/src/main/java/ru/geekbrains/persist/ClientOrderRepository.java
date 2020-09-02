@@ -7,6 +7,7 @@ import javax.inject.Named;
 @Named
 public class ClientOrderRepository {
 //    реализация будет под JPA
+// TODO: 02.09.2020 реализацию + ui + nav bar 
     public void update(ClientOrder order) {
     }
 

@@ -15,6 +15,7 @@ public class Product implements Serializable {
     private Long id;
 
 //    @NotNull(message = "Поле не должно быть пустым")
+    @Column(length = 128, nullable = false)
     private String name;
 
 //    @NotNull(message = "Поле не должно быть пустым")
@@ -23,14 +24,23 @@ public class Product implements Serializable {
 
     private BigDecimal price;
 
+    @ManyToOne
+    private Category category;
+
     public Product() {
     }
 
-    public Product(Long id, String name, String description, BigDecimal price) {
-        this.id = id;
+    public Product( String name, String description, BigDecimal price) {
         this.name = name;
         this.description = description;
         this.price = price;
+    }
+
+    public Product(String name, String description, BigDecimal price, Category category) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.category = category;
     }
 
     public Long getId() {
@@ -63,5 +73,13 @@ public class Product implements Serializable {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

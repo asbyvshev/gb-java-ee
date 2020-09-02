@@ -4,13 +4,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
+import javax.transaction.*;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,18 +24,52 @@ public class ProductRepository {
     @PersistenceContext(unitName = "ds")
     private EntityManager em;
 
+    @Resource
+    private UserTransaction ut;
+
+    @Inject
+    private CategoryRepository categoryRepository;
+
     public ProductRepository() {
     }
 
     @PostConstruct
     public void init() {
-       if (this.findAll().isEmpty()) {
-            logger.info("No products in DB. Initializing.");
+        logger.info("CategoryRepository init");
 
-           this.insert(new Product(null, "Apple Macbook pro 2015", "Apple profession laptop", new BigDecimal(3000)));
-           this.insert(new Product(null, "Apple Macbook air 2015", "Apple netbook", new BigDecimal(2000)));
-           this.insert(new Product(null, "Apple iPad", "Apple tablet", new BigDecimal(1000)));
+        if (categoryRepository.findAll().isEmpty()) {
+            logger.info("No categories in DB. Initializing.");
+
+            categoryRepository.insert(new Category( "Laptop"));
+            categoryRepository.insert(new Category("Tablet"));
+            categoryRepository.insert(new Category("Netbook"));
         }
+
+        logger.info("ProductRepository init");
+       if (this.findAll().isEmpty()) {
+           logger.info("No products in DB. Initializing.");
+
+           try {
+               ut.begin();
+
+               this.insert(new Product("Apple Macbook pro 2015", "Apple profession laptop",
+                       new BigDecimal(3000), categoryRepository.findByName("Laptop").get()));
+               this.insert(new Product("Apple Macbook air 2015", "Apple netbook",
+                       new BigDecimal(2000), categoryRepository.findByName("Netbook").get()));
+               this.insert(new Product("Apple iPad", "Apple tablet",
+                       new BigDecimal(1000), categoryRepository.findByName("Tablet").get()));
+
+               ut.commit();
+           } catch (Exception ex) {
+               logger.error("", ex);
+               try {
+                   ut.rollback();
+               } catch (SystemException e) {
+                   logger.error("", e);
+               }
+           }
+
+       }
     }
 
     @Transactional

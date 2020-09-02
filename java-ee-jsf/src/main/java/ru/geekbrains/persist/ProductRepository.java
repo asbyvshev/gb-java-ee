@@ -31,9 +31,9 @@ public class ProductRepository {
        if (this.findAll().isEmpty()) {
             logger.info("No products in DB. Initializing.");
 
-           this.insert(new Product(-1L, "Apple Macbook pro 2015", "Apple profession laptop", new BigDecimal(3000)));
-           this.insert(new Product(-1L, "Apple Macbook air 2015", "Apple netbook", new BigDecimal(2000)));
-           this.insert(new Product(-1L, "Apple iPad", "Apple tablet", new BigDecimal(1000)));
+           this.insert(new Product(null, "Apple Macbook pro 2015", "Apple profession laptop", new BigDecimal(3000)));
+           this.insert(new Product(null, "Apple Macbook air 2015", "Apple netbook", new BigDecimal(2000)));
+           this.insert(new Product(null, "Apple iPad", "Apple tablet", new BigDecimal(1000)));
         }
     }
 

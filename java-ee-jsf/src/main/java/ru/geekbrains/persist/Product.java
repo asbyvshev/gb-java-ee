@@ -5,6 +5,8 @@ package ru.geekbrains.persist;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Collections;
+import java.util.List;
 
 @Entity
 @Table(name = "products")
@@ -26,6 +28,9 @@ public class Product implements Serializable {
 
     @ManyToOne
     private Category category;
+
+    @ManyToMany(mappedBy = "products")
+    private List <ClientOrder> orders;
 
     public Product() {
     }
@@ -81,5 +86,16 @@ public class Product implements Serializable {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public List<ClientOrder> getOrders() {
+        if (orders == null){
+            return Collections.emptyList();
+        }
+        return orders;
+    }
+
+    public void setOrders(List<ClientOrder> orders) {
+        this.orders = orders;
     }
 }

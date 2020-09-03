@@ -1,7 +1,7 @@
 package ru.geekbrains.persist;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -46,7 +46,7 @@ public class Category {
 
     public List<Product> getProducts() {
         if (products == null) {
-            products = new ArrayList<>();
+           return Collections.emptyList();
         }
         return products;
     }

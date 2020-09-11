@@ -48,6 +48,9 @@ public class Product implements Serializable {
         this.category = category;
     }
 
+    public Product(Long id, String name, String description, BigDecimal price, Category category) {
+    }
+
     public Long getId() {
         return id;
     }

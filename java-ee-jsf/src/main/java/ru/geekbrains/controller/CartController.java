@@ -1,11 +1,25 @@
 package ru.geekbrains.controller;
 
-import javax.enterprise.context.SessionScoped;
+import ru.geekbrains.service.CartService;
+import ru.geekbrains.service.ProductRepr;
+
+import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
-import java.io.Serializable;
+import java.util.List;
 
-@SessionScoped
+@RequestScoped
 @Named
-public class CartController implements Serializable {
+public class CartController {
 
+    @EJB
+    private CartService cartService;
+
+    public List<ProductRepr> getAllProducts() {
+        return null; // TODO
+    }
+
+    public void add(ProductRepr productRepr) {
+        // TODO
+    }
 }

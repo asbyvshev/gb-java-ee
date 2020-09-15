@@ -6,6 +6,7 @@ import ru.geekbrains.service.ProductRepr;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
+import java.math.BigDecimal;
 import java.util.List;
 
 @RequestScoped
@@ -16,10 +17,18 @@ public class CartController {
     private CartService cartService;
 
     public List<ProductRepr> getAllProducts() {
-        return null; // TODO
+        return cartService.getAllProducts();
     }
 
     public void add(ProductRepr productRepr) {
-        // TODO
+        cartService.add(productRepr);
+    }
+
+    public void delete(ProductRepr productRepr) {
+        cartService.delete(productRepr);
+    }
+
+    public BigDecimal getTotalCost () {
+        return cartService.getTotalCost();
     }
 }

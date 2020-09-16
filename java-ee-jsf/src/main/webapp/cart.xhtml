@@ -43,30 +43,22 @@
             <!-- TODO таблица для товаров в корзине -->
             <h:form id="cartForm">
                 <p:dataTable var="prod" value="#{cartController.getAllProducts()}">
-<!--                    <h:column>-->
-<!--                        <f:facet name="header">Name</f:facet>-->
-<!--                        #{prod.name}-->
-<!--                    </h:column>-->
-<!--                    <h:column>-->
-<!--                        <f:facet name="header">Price</f:facet>-->
-<!--                        #{prod.price}-->
-<!--                    </h:column>-->
                     <p:column headerText="Name" sortBy="#{prod.name}">
                         <h:outputText value="#{prod.name}" />
                     </p:column>
                     <p:column headerText="Price" sortBy="#{prod.price}">
                         <h:outputText value="#{prod.price}" />
                     </p:column>
-<!--                    <p:summaryRow>-->
-<!--                        <p:column colspan="3" style="text-align:right">-->
-<!--                            <h:outputText value="Total:" />-->
-<!--                        </p:column>-->
-<!--                        <p:column>-->
-<!--                            <h:outputText value="#{cart.getTotalCost()}">-->
-<!--                                <f:convertNumber type="currency" currencySymbol="$" />-->
-<!--                            </h:outputText>-->
-<!--                        </p:column>-->
-<!--                    </p:summaryRow>-->
+                    <p:summaryRow>
+                        <p:column colspan="3" style="text-align:right">
+                            <h:outputText value="Total:" />
+                        </p:column>
+                        <p:column>
+                            <h:outputText value="#{cartController.getTotalCost()}">
+                                <f:convertNumber type="currency" currencySymbol="$" />
+                            </h:outputText>
+                        </p:column>
+                    </p:summaryRow>
                 </p:dataTable>
             </h:form>
         </div>

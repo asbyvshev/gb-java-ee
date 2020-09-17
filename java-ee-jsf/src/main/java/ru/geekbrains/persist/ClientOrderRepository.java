@@ -4,12 +4,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
-import javax.transaction.UserTransaction;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,9 +19,6 @@ private static final Logger logger = LoggerFactory.getLogger(ClientOrderReposito
 
     @PersistenceContext(unitName = "ds")
     private EntityManager em;
-
-    @Inject
-    private UserTransaction ut;
 
     public ClientOrderRepository() {
     }

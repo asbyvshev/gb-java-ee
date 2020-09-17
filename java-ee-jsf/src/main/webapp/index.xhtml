@@ -31,7 +31,7 @@
                     <h:link styleClass="nav-link" value="List" outcome="index"/>
                 </li>
                 <li class="nav-item active">
-                    <h:link styleClass="nav-link" value="Order" outcome="client_order"/>
+                    <h:link styleClass="nav-link" value="Cart" outcome="cart"/>
                 </li>
             </ul>
         </div>
@@ -66,11 +66,19 @@
                             #{prod.price}
                         </h:column>
                         <h:column>
+                            <f:facet name="header">Category</f:facet>
+                            #{prod.categoryName}
+                        </h:column>
+                        <h:column>
                             <f:facet name="header">Action</f:facet>
                             <h:commandButton value="Edit" styleClass="btn btn-success"
                                              action="#{productController.editProduct(prod)}"/>
                             <h:commandButton value="Delete" styleClass="btn btn-danger"
                                              action="#{productController.deleteProduct(prod)}">
+                                <f:ajax event="click" render="productsForm"/>
+                            </h:commandButton>
+                            <h:commandButton value="Add to cart" styleClass="btn btn-danger"
+                                             action="#{cartController.add(prod)}">
                                 <f:ajax event="click" render="productsForm"/>
                             </h:commandButton>
                         </h:column>

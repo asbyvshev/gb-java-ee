@@ -2,14 +2,22 @@ package ru.geekbrains.persist;
 
 //import javax.validation.constrains;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Collections;
+import java.util.List;
 
+@Entity
+@Table(name = "products")
 public class Product implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
 //    @NotNull(message = "Поле не должно быть пустым")
+    @Column(length = 128, nullable = false)
     private String name;
 
 //    @NotNull(message = "Поле не должно быть пустым")
@@ -18,14 +26,26 @@ public class Product implements Serializable {
 
     private BigDecimal price;
 
+    @ManyToOne
+    private Category category;
+
+    @ManyToMany(mappedBy = "products")
+    private List <ClientOrder> orders;
+
     public Product() {
     }
 
-    public Product(Long id, String name, String description, BigDecimal price) {
-        this.id = id;
+    public Product( String name, String description, BigDecimal price) {
         this.name = name;
         this.description = description;
         this.price = price;
+    }
+
+    public Product(String name, String description, BigDecimal price, Category category) {
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.category = category;
     }
 
     public Long getId() {
@@ -58,5 +78,24 @@ public class Product implements Serializable {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+    public List<ClientOrder> getOrders() {
+        if (orders == null){
+            return Collections.emptyList();
+        }
+        return orders;
+    }
+
+    public void setOrders(List<ClientOrder> orders) {
+        this.orders = orders;
     }
 }

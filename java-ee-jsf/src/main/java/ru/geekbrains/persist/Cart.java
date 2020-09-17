@@ -1,6 +1,6 @@
 package ru.geekbrains.persist;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Cart {
@@ -24,7 +24,7 @@ public class Cart {
 
     public List<Product> getProducts() {
         if (products == null) {
-            products = new ArrayList<>();
+            return Collections.emptyList();
         }
         return products;
     }

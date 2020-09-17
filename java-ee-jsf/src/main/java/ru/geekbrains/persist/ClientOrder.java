@@ -1,18 +1,32 @@
 package ru.geekbrains.persist;
 
-import java.util.ArrayList;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
 
-public class ClientOrder {
+@Entity
+@Table(name = "client_orders")
+public class ClientOrder implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToMany
+    @JoinTable(
+            name = "order_products",
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id")
+    )
     private List<Product> products;
+
+    @Column
     private byte status;
 
     public ClientOrder(){}
 
-    public ClientOrder(Long id, List<Product> products, byte status) {
-        this.id = id;
+    public ClientOrder(List<Product> products, byte status) {
         this.products = products;
         this.status = status;
     }
@@ -29,10 +43,6 @@ public class ClientOrder {
         this.id = id;
     }
 
-    public void setProducts(List<Product> products) {
-        this.products = products;
-    }
-
     public byte getStatus() {
         return status;
     }
@@ -41,9 +51,13 @@ public class ClientOrder {
         this.status = status;
     }
 
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
     public List<Product> getProducts() {
         if (products == null) {
-            products = new ArrayList<>();
+            return Collections.emptyList();
         }
         return products;
     }

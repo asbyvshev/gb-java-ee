@@ -62,7 +62,7 @@ public class ProductServiceImpl implements ProductService, ProductServiceRs {
 
     @Override
     public ProductRepr findByIdRs(long id) {
-        return findById(id).orElseThrow(()->new WebApplicationException(Response.Status.NOT_FOUND));
+        return findById(id).get();//orElseThrow(()->new WebApplicationException(Response.Status.NOT_FOUND));
     }
 
     @Override

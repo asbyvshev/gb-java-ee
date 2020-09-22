@@ -1,7 +1,7 @@
 package ru.geekbrains.controller;
 
 import ru.geekbrains.persist.Category;
-import ru.geekbrains.persist.CategoryRepository;
+import ru.geekbrains.service.CategoryService;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -17,7 +17,7 @@ import javax.inject.Named;
 public class CategoryConverter implements Converter<Category> {
 
     @Inject
-    private CategoryRepository categoryRepository;
+    private CategoryService categoryService;
 
     @Override
     public Category getAsObject(FacesContext context, UIComponent component, String value) {
@@ -25,7 +25,7 @@ public class CategoryConverter implements Converter<Category> {
             return null;
         }
 
-        return categoryRepository.findById(Long.parseLong(value))
+        return categoryService.findById(Long.parseLong(value))
                 .orElseThrow(() -> new ConverterException(new FacesMessage(String.format("%s is not correct id", value))));
     }
 

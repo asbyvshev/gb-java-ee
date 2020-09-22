@@ -30,9 +30,9 @@ public interface ProductServiceRs {
     ProductRepr findByIdRs(@PathParam("id") long id);
 
     @GET
-    @Path("/{category_id}")
+    @Path("/category/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    List<ProductRepr> findByCategoryId(@PathParam("category_id") long id);
+    List<ProductRepr> findByCategoryId(@PathParam("id") long id);
 
     @GET
     @Path("/{name}")

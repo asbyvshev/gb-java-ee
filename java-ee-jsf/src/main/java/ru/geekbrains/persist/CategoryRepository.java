@@ -18,20 +18,16 @@ public class CategoryRepository {
     @PersistenceContext(unitName = "ds")
     private EntityManager em;
 
-    public CategoryRepository() {
-    }
+    public CategoryRepository() {}
 
-    @TransactionAttribute
     public void insert(Category category) {
         em.persist(category);
     }
 
-    @TransactionAttribute
     public void update(Category category) {
         em.merge(category);
     }
 
-    @TransactionAttribute
     public void delete(long id) {
         Category category = em.find(Category.class, id);
         if (category != null) {

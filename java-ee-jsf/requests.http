@@ -1,2 +1,3 @@
-GET http://localhost:8080/java-ee-jsf/api/product/1
+GET http://localhost:8080/java-ee-jsf/api/product/getById/1
+GET http://localhost:8080/java-ee-jsf/api/product/getByName/Apple%20Macbook%20air%202015
 GET http://localhost:8080/java-ee-jsf/api/product/category/2

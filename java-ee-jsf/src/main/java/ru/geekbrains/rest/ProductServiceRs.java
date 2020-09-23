@@ -25,7 +25,7 @@ public interface ProductServiceRs {
     void delete(@PathParam("id") long id);
 
     @GET
-    @Path("/{id}")
+    @Path("/getById/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     ProductRepr findByIdRs(@PathParam("id") long id);
 
@@ -35,7 +35,7 @@ public interface ProductServiceRs {
     List<ProductRepr> findByCategoryId(@PathParam("id") long id);
 
     @GET
-    @Path("/{name}")
+    @Path("/getByName/{name}")
     @Produces(MediaType.APPLICATION_JSON)
     ProductRepr findByName(@PathParam("name") String name);
 

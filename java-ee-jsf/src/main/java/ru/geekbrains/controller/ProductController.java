@@ -1,7 +1,7 @@
 package ru.geekbrains.controller;
 
 import ru.geekbrains.persist.Category;
-import ru.geekbrains.persist.CategoryRepository;
+import ru.geekbrains.service.CategoryService;
 import ru.geekbrains.service.ProductRepr;
 import ru.geekbrains.service.ProductService;
 
@@ -19,7 +19,7 @@ public class ProductController implements Serializable {
     private ProductService productService;
 
     @EJB
-    private CategoryRepository categoryRepository;
+    private CategoryService categoryService;
 
     private ProductRepr product;
 
@@ -59,6 +59,6 @@ public class ProductController implements Serializable {
     }
 
     public List<Category> getAllCategories() {
-        return categoryRepository.findAll();
+        return categoryService.findAll();
     }
 }
